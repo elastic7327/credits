@@ -38,4 +38,8 @@ class TestSecurityClass(TestBaseClass):
 
         hashed_card_no = generate_password_hash(card_no)
 
-        assert check_password_hash(hashed_card_no, card_no)
+        assert check_password_hash(hashed_card_no, card_no) is True
+
+        assert check_password_hash(hashed_card_no, card_no + "11") is False
+
+        assert check_password_hash(hashed_card_no, card_no[:5]) is False
