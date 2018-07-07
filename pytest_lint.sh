@@ -2,4 +2,7 @@
 
 pytest -s -v
 
-flake8 src/
+pylint src/
+
+# flake8 --filename=*.py src/
+# flake8 --filename=*.py src/

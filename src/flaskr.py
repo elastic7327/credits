@@ -7,9 +7,12 @@ Description: . . . .
 """
 
 from flask import Flask
-app = Flask(__name__)
+app = Flask(__name__)  # pylint: disable=invalid-name
 
 
 @app.route('/')
 def hello_world():
+    """
+    doc
+    """
     return 'Hello, World!'
