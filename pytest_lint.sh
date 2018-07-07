@@ -1,5 +1,5 @@
 #!/bin/sh
 
 pytest -s -v
-pylint .
 
+flake8 src/
