@@ -12,9 +12,15 @@ from src.flaskr import db
 
 class Transaction(db.Model):
     __tablename__ = 'transaction'
+
     id = db.Column(db.Integer, primary_key=True)
 
-    label = db.Column(db.String(50), nullable=False)
+    tram = db.Column(db.Integer, nullable=False)  # 트렌젝션 어마운트
+
+    type = db.Column(db.Integer, nullable=False)  # 0 Charge, Credit
+
+    label = db.Column(db.String(20), nullable=False)  # Charge, Credit
+
     is_valid = db.Column(db.Integer, default=0, nullable=False)
 
     created_at = db.Column(
