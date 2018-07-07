@@ -9,13 +9,7 @@ Description:
 from werkzeug.security import generate_password_hash, \
              check_password_hash
 
-from mixer.backend.flask import mixer
-
 from src.tests.common.base import TestBaseClass
-from src.models.users import User
-from src.flaskr import db
-
-import pytest
 
 
 class TestSecurityClass(TestBaseClass):
