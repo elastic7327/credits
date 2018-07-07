@@ -8,8 +8,9 @@ Description:
 
 import unittest
 
-from src.flaskr import app, db
 from mixer.backend.flask import mixer
+
+from src.flaskr import app, db
 
 
 class TestBaseClass(unittest.TestCase):

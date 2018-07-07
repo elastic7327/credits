@@ -7,7 +7,7 @@ Description:
 """
 
 
-class Config(object):
+class Config(object):  # pylint: disable=too-few-public-methods
     """
     doc
     """
@@ -16,7 +16,7 @@ class Config(object):
     DATABASE_URI = 'sqlite://:memory:'
 
 
-class DevelopmentConfig(Config):
+class DevelopmentConfig(Config):  # pylint: disable=too-few-public-methods
     """
     doc
     """
@@ -25,7 +25,7 @@ class DevelopmentConfig(Config):
     DATABASE_URI = 'sqlite://:memory:'
 
 
-class ProductionConfig(Config):
+class ProductionConfig(Config):  # pylint: disable=too-few-public-methods
     """
     doc
     """
