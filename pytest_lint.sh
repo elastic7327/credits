@@ -2,6 +2,7 @@
 
 pytest -s -v src/tests/test_luhn.py
 pytest -s -v src/tests/test_models.py
+pytest -s -v src/tests/test_securitys.py
 
 # pylint src/
 

@@ -9,7 +9,7 @@ Description:
 from src.tests.common.base import TestBaseClass
 from src.modules.luhn import luhn
 
-import pytest
+# import pytest
 
 
 class TestLuhnModules(TestBaseClass):

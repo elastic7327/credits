@@ -21,6 +21,9 @@ class TestModelsClass(TestBaseClass):
     """Test case docstring."""
 
     def test_smoke_test(self):
+        """
+            import Path 확인을 위한 스모크 테스트입니다.
+        """
 
         assert 1 is 1, "Should be equal"
 
@@ -53,4 +56,3 @@ class TestModelsClass(TestBaseClass):
 
         except exc.IntegrityError as e:
             db.session().rollback()
-

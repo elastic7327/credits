@@ -16,9 +16,17 @@ from src.flaskr import db
 
 class User(db.Model):
     __tablename__ = 'user'
+
     id = db.Column(db.Integer, primary_key=True)
+
     card_holder_name = db.Column(db.String(50), nullable=False)
+
+    #  TODO:  <08-07-18, Daniel> #
+    #  내부적으로, Ashper을 구현해서, 저장하는 방법도.. SecretKey필요
+
     card_no = db.Column(db.String(500), unique=True, nullable=False)
+
+    limitation = db.Column(db.Integer, nullable=False)
 
     created_at = db.Column(
             db.DateTime,
@@ -38,6 +46,7 @@ class User(db.Model):
 
     @validates('card_no')
     def validate_card_no(self, key, card_no):
+        assert len(card_no) <= 19, "CardLengthError!"
         assert luhn(card_no) is True, "CardNumberError!"
         return card_no
 
