@@ -18,17 +18,10 @@ class TestBaseClass(unittest.TestCase):
     """Test case docstring."""
 
     def setUp(self):
-        """
-        doc
-        """
-        # get test-config
-        # app.config.from_object('src.configs.settings.TestingConfigReadOnly')
-        app.config.from_object('src.configs.settings.TestingConfigLocalMysql')
+        app.config.from_object('src.configs.settings.DevelopmentConfig')
         mixer.init_app(app)
+        db.create_all()
         self.client = app.test_client()
 
     def tearDown(self):
-        """
-        doc
-        """
         db.session.remove()
