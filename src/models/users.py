@@ -8,14 +8,17 @@ Description:
 
 from datetime import datetime
 
+from sqlalchemy.orm import validates
+
+from src.modules.luhn import luhn
 from src.flaskr import db
 
 
 class User(db.Model):
-    __tablename__ = 'usdart_admin'
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), unique=True, nullable=False)
-    nickname = db.Column(db.String(1024), nullable=True)
+    card_holder_name = db.Column(db.String(50), nullable=False)
+    card_no = db.Column(db.String(500), unique=True, nullable=False)
 
     created_at = db.Column(
             db.DateTime,
@@ -28,10 +31,15 @@ class User(db.Model):
     deleted_at = db.Column(db.DateTime, nullable=True)
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User %r>' % self.card_holder_name
 
     def __str__(self):
         return "User(id='%s')" % self.id
+
+    @validates('card_no')
+    def validate_card_no(self, key, card_no):
+        assert luhn(card_no) is True, "CardNumberError!"
+        return card_no
 
     def to_json(self):
         return {

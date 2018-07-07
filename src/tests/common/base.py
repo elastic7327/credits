@@ -23,5 +23,8 @@ class TestBaseClass(unittest.TestCase):
         db.create_all()
         self.client = app.test_client()
 
+        self.valid_card_no1 = "4028571169702107"
+        self.valid_card_no2 = "1440038135573607"
+
     def tearDown(self):
         db.session.remove()
