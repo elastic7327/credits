@@ -6,51 +6,83 @@ Github: https://github.com/elastic7327
 Description:
 """
 
-
-from sqlalchemy import exc
-
 from src.tests.common.base import TestBaseClass
 from src.models.users import User
 from src.models.transactions import Transaction
 from src.flaskr import db
 
-import pytest
+# import pytest
 
 
 def Add(values):
-    print("Add")
-    o = User(username=values[0], card_no=values[1], limitation=int(values[2][1:]))
-    db.session.add(o)
-    db.session.commit()
+
+    username = values[0]
+    card_no = values[1]
+    limitation = int(values[2][1:])
+
+    try:
+        o = User(
+                username=username,
+                card_no=card_no,
+                limitation=limitation)
+
+        db.session.add(o)
+        db.session.commit()
+
+    except Exception as e:
+        print(f"{username}: error")
 
 
 def Charge(values):
-    print("Charge")
 
-    username = values[0]
-    amount = values[1][1:]
+    try:
+        username = values[0]
+        amount = values[1][1:]
 
-    uo = User.query.filter_by(
-            username=username).one()
+        uo = User.query.filter_by(
+                username=username).one()
 
-    tr =Transaction(
-            user_id=uo.id,
-            tram=amount,
-            type=1,
-            label=f'{username} Charge {amount} at the Sumgo Shop')
+        tr = Transaction(
+                user_id=uo.id,
+                tram=amount,
+                type=1,
+                label=f'{username} Charge {amount}')
 
-    uo.balance += int(amount)
+        uo.balance += int(amount)
 
-    db.session.add(tr)
-    db.session.commit()
+        db.session.add(tr)
+        db.session.commit()
+
+        print(f"{username}: ${amount}")
+
+    except Exception as e:
+        print(f"{username}: error")
 
 
 def Credit(values):
-    print("Credit")
-    print(values)
 
-    username = values[0]
-    amount = values[1]
+    try:
+        username = values[0]
+        amount = values[1][1:]
+
+        uo = User.query.filter_by(
+                username=username).one()
+
+        tr = Transaction(
+                user_id=uo.id,
+                tram=amount,
+                type=0,
+                label=f'{username} Credit {amount} at the Sumgo Shop')
+
+        uo.balance -= int(amount)
+
+        db.session.add(tr)
+        db.session.commit()
+
+        print(f"{username}: $-{amount}")
+
+    except Exception as e:
+        print(f"{username}: error")
 
 
 class TestIOClass(TestBaseClass):
@@ -61,7 +93,6 @@ class TestIOClass(TestBaseClass):
             for k, line in enumerate(f):
 
                 try:
-                    print(k)
 
                     ip = line.split()
 
@@ -76,10 +107,10 @@ class TestIOClass(TestBaseClass):
                     pass
 
         assert User.query.count() == 3, "Should be 3"
-        assert Transaction.query.count() == 3, "Should be 3"
-
-        for x in User.query.all():
-            print(x.to_json())
+        assert Transaction.query.count() == 6, "Should be 3"
 
         for x in Transaction.query.all():
+            print(x.to_json())
+
+        for x in User.query.all():
             print(x.to_json())
