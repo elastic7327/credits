@@ -10,12 +10,28 @@ Charge Daniel $500
 
 Charge Chris $500
 
+Charge Chris $500
+
 Charge Trump $500
 
 Credit Daniel $500
+
+Credit Daniel $500
+
+Credit Daniel $500
+
+Credit Daniel $500
+
+Credit Daniel $500
+
+Credit Daniel $50000
 
 Credit Chris $500
 
 Credit Trump $500
 
 Credit Trump $50000
+
+Charge Chris $500
+
+Charge Chris $500

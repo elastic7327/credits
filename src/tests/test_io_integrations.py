@@ -107,7 +107,7 @@ class TestIOClass(TestBaseClass):
                     pass
 
         assert User.query.count() == 3, "Should be 3"
-        assert Transaction.query.count() == 6, "Should be 3"
+        assert Transaction.query.count() > 6
 
         for x in Transaction.query.all():
             print(x.to_json())
