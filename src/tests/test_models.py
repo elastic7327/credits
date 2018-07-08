@@ -30,6 +30,9 @@ class TestModelsClass(TestBaseClass):
 
     @pytest.mark.skip(reason="skip it for a moment")
     def test_create_fake_users(self):
+        """
+            유저가 적절하게 생성되는지 확인하는 테스트입니다.
+        """
 
         for x in range(5):
             mixer.blend(User)
@@ -38,16 +41,16 @@ class TestModelsClass(TestBaseClass):
 
     def test_card_no_validation_check(self):
         """
-        구현한 luhn 함수를 users 모델 validate에 등록을 해서
-        테스트 합니다.
+            구현한 luhn 함수를 users 모델 validate에 등록을 해서
+            테스트 합니다.
         """
         mixer.blend(User, card_no=self.valid_card_no1)
 
     def test_duplicate_card_no_check(self):
         """
-        카드를 두번 등록을해서, 중복테스트를 합니다.
-        Integrity Error 가 발생하기 때문에, 테스트가 깨집니다.
-        그렇기 때문에, IE를 걸어서, 오류를 넘어가도록 합니다.
+            카드를 두번 등록을해서, 중복테스트를 합니다.
+            Integrity Error 가 발생하기 때문에, 테스트가 깨집니다.
+            그렇기 때문에, IE를 걸어서, 오류를 넘어가도록 합니다.
         """
 
         try:
@@ -59,6 +62,8 @@ class TestModelsClass(TestBaseClass):
             db.session().rollback()
 
     def test_transaction_models(self):
-        tr = mixer.blend(Transaction)
+        """
+            트렌젝션 모델테스트
+        """
+        mixer.blend(Transaction)
         Transaction.query.count() == 1
-        __import__('ipdb').set_trace()
