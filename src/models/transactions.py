@@ -23,8 +23,6 @@ class Transaction(db.Model):
 
     label = db.Column(db.String(20), nullable=False)  # Charge, Credit
 
-    is_valid = db.Column(db.Integer, default=0, nullable=False)  # 모든 트렌젝션의 default 값들은 0 으로, 유효하지 않습니다.
-
     created_at = db.Column(
             db.DateTime,
             nullable=False, default=datetime.utcnow)
