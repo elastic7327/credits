@@ -1,0 +1,17 @@
+Add Daniel 4028571169702107 $10000
+
+Add Chris 9440038135573607 $5000
+
+Add Trump 5272892672067154 $9000
+
+Charge Daniel $500
+
+Charge Chris $500
+
+Charge Trump $500
+
+Credit Daniel $500
+
+Credit Chris $500
+
+Credit Trump $500

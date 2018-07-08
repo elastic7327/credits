@@ -58,4 +58,8 @@ class User(db.Model):
         return {
             "id": self.id,
             "username": self.username,
+            "card_no": self.card_no[:-10] + "*"*10,  # 모든 넘버를 보여주면 안됩니다.
+            "balance": self.balance,
+            "limitation": self.limitation,
+            "created_at": self.created_at,
         }

@@ -9,7 +9,6 @@ Description: . . . .
 
 import sys
 import select
-import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -17,17 +16,15 @@ app = Flask('__name__')  # pylint: disable=invalid-name
 db = SQLAlchemy(app)  # pylint: disable=invalid-name
 
 
-# @click.option('<', prompt=True)
-# @click.argument('filename')
-# def hello(filename):
-# click.echo(filename)
-
-
 def credit():
-
+    """
+    STDIN 관련된 모듈
+    """
     if select.select([sys.stdin, ], [], [], 0.0)[0]:
         print("Have data! stdin")
-
+        for line in sys.stdin:
+                # sys.stdout.write(line)
+                print(line)
     else:
 
         print("No data! file data")

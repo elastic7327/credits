@@ -42,5 +42,9 @@ class Transaction(db.Model):
     def to_json(self):
         return {
             "id": self.id,
-            "username": self.username,
+            "user_id": self.user_id,
+            "type": self.type,
+            "label": self.label,
+            "created_at": self.created_at,
+            "tram": self.tram,
         }
