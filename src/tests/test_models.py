@@ -101,6 +101,7 @@ class TestModelsClass(TestBaseClass):
 
         Transaction.query.count() == 1
 
+
     def test_transaction_models_credit_case_without_transaction_zone(self):
         """
             트렌젝션 모델테스트 without Transaction' zone
@@ -138,6 +139,7 @@ class TestModelsClass(TestBaseClass):
         assert tr.tram == amount, f"{amount}, 값만큼 트렌젝션이 발생해야합니다."
         assert tr.type == 1, "Charge 이므로 타입이 0으로 발생해야합니다."
 
+    @pytest.mark.skip(reason="skip it for a moment")
     def test_all_transaction_model_test_with_bdd_story_lines(self):
         # 트럼프 라는 고객이 숨고에 신용카드를 적절하게 등록을합니다.
         # *내부적으로, 적절한 카드 넘버인지 확인을 하게됩니다.

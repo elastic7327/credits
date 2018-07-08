@@ -23,7 +23,6 @@ def credit():
     if select.select([sys.stdin, ], [], [], 0.0)[0]:
         print("Have data! stdin")
         for line in sys.stdin:
-                # sys.stdout.write(line)
                 print(line)
     else:
 
