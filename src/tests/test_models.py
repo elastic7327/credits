@@ -97,7 +97,7 @@ class TestModelsClass(TestBaseClass):
 
         assert daniel.balance == -amount, "1000원을 Credit 했기 때문에 -1000원 이여야합니다."
         assert tr.tram == amount, f"{amount}, 값만큼 트렌젝션이 발생해야합니다."
-        assert tr.type == 1, "Credit 이므로 타입이 0으로 발생해야합니다."
+        assert tr.type == 1, "Credit 이므로 타입이 1으로 발생해야합니다."
 
         Transaction.query.count() == 1
 
@@ -124,7 +124,7 @@ class TestModelsClass(TestBaseClass):
         tr = mixer.blend(
                 Transaction,
                 user_id=chris.id,
-                type=1,
+                type=0,
                 tram=1000,
                 label=f'{chris.username} Charge {amount}'
             )
@@ -137,9 +137,8 @@ class TestModelsClass(TestBaseClass):
 
         assert chris.balance == amount, "1000원을 Charge 했기 때문에 +1000원 이여야합니다."
         assert tr.tram == amount, f"{amount}, 값만큼 트렌젝션이 발생해야합니다."
-        assert tr.type == 1, "Charge 이므로 타입이 0으로 발생해야합니다."
+        assert tr.type == 0, "Charge 이므로 타입이 0으로 발생해야합니다."
 
-    @pytest.mark.skip(reason="skip it for a moment")
     def test_all_transaction_model_test_with_bdd_story_lines(self):
         # 트럼프 라는 고객이 숨고에 신용카드를 적절하게 등록을합니다.
         # *내부적으로, 적절한 카드 넘버인지 확인을 하게됩니다.
