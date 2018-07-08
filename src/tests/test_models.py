@@ -11,6 +11,7 @@ from sqlalchemy import exc
 
 from src.tests.common.base import TestBaseClass
 from src.models.users import User
+from src.models.transactions import Transaction
 from src.flaskr import db
 
 import pytest
@@ -56,3 +57,8 @@ class TestModelsClass(TestBaseClass):
 
         except exc.IntegrityError as e:
             db.session().rollback()
+
+    def test_transaction_models(self):
+        tr = mixer.blend(Transaction)
+        Transaction.query.count() == 1
+        __import__('ipdb').set_trace()

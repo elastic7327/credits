@@ -19,6 +19,8 @@ class Transaction(db.Model):
 
     type = db.Column(db.Integer, nullable=False)  # 0 Charge, Credit
 
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
     label = db.Column(db.String(20), nullable=False)  # Charge, Credit
 
     is_valid = db.Column(db.Integer, default=0, nullable=False)
@@ -31,7 +33,7 @@ class Transaction(db.Model):
             db.DateTime,
             nullable=True, onupdate=datetime.utcnow)
 
-    deleted_at = db.Column(db.Datetime, nullable=True)
+    deleted_at = db.Column(db.DateTime, nullable=True)
 
     def __repr__(self):
         return '<Transaction %r>' % self.label
