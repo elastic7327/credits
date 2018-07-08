@@ -97,7 +97,7 @@ class TestModelsClass(TestBaseClass):
 
         assert daniel.balance == -amount, "1000원을 Credit 했기 때문에 -1000원 이여야합니다."
         assert tr.tram == amount, f"{amount}, 값만큼 트렌젝션이 발생해야합니다."
-        assert tr.type == 0, "Credit 이므로 타입이 0으로 발생해야합니다."
+        assert tr.type == 1, "Credit 이므로 타입이 0으로 발생해야합니다."
 
         Transaction.query.count() == 1
 
@@ -157,7 +157,7 @@ class TestModelsClass(TestBaseClass):
         mixer.blend(
             Transaction,
             user_id=trump_user_a.id,
-            type=1,
+            type=0,
             tram=5000,
             label=f'{trump_user_a.username} Charge {amount}'
         )
@@ -181,7 +181,7 @@ class TestModelsClass(TestBaseClass):
         mixer.blend(
             Transaction,
             user_id=trump_user_b.id,
-            type=0,
+            type=1,
             tram=next_amount,
             label=f'{trump_user_b.username} Credit {next_amount} at the Sumgo Shop'
         )
